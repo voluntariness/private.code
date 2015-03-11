@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="lib.js"></script>
+    <link href="css/lib.css" rel="stylesheet" type="text/css" />
+    <meta charset="utf-8">
+    <title>Test</title>
+
+</head>
+
+<body>
+    <hr/>
+    <div class="container">
+        <form class="form-horizontal" action="ajax.php">
+            <div class="form-group">
+                <label for="exampleInputEmail1" class="control-label col-xs-2">Email address</label>
+                <div class="col-xs-2">
+                    <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Enter email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1" class="control-label col-xs-2">Password</label>
+                <div class="col-xs-2">
+                    <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1" class="control-label col-xs-2">Name</label>
+                <div class="col-xs-2">
+                    <input type="text" class="form-control" id="count-down" name="password" placeholder="Password">
+                </div>
+                <button type="button" class="btn btn-primary" id="search">Search</button>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-2 col-xs-offset-4">
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+    lib.loading('form', {
+        button: $('button[type=submit]'),
+        bind: {
+            submit: function (e, dfd) {
+                e.preventDefault();
+                var $this = $(this);
+                var url = $this.attr('action');
+                var data = $this.serialize();
+                $.ajax(url, {data: data})
+                    .done(function (o) {
+                        dfd.resolve();
+                        console.log(o);
+                    });
+            }
+        }
+    });
+    lib.loading('#search', {
+        button: $('#search'),
+        bind: {
+            click: function (e, dfd) {
+                $.get('ajax.php', {data: {aa: 123}})
+                    .done(function () {
+                        dfd.resolve();
+                        console.log(o);
+                    });
+
+            }
+        }
+
+    });
+
+
+    </script>
+</body>
+
+</html>

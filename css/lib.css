@@ -1,0 +1,9 @@
+.loading-gif {
+    background-image: url(../images/loading.gif);
+    background-repeat: no-repeat;
+    background-position: center; 
+    display: inline-block;
+    height: 12px;
+    width: 18px;
+    margin: 0 5px;
+}
